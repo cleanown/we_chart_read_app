@@ -71,13 +71,94 @@ class _CardFreeState extends BaseCardState{
   _bookList() {
     return GridView.count(
       crossAxisCount: 3,
+      crossAxisSpacing: 15,
       mainAxisSpacing: 10,
       childAspectRatio: 0.46,
-      padding: EdgeInsets.only(),
+      padding: EdgeInsets.only(left: 20,right: 20),
+      children: BOOK_LIST.map((item) {
+        return _item(item);
+      }).toList(),
     );
   }
 
   _bottomButton() {
+    return FractionallySizedBox(
+      widthFactor: 1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: RaisedButton(
+          onPressed: () {},
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)
+          ),
+          padding: EdgeInsets.only(top: 13,bottom: 15),
+          color: Colors.blue,
+          child: Text(
+            '免费领取',
+            style: TextStyle(
+              color: Colors.white
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
+  Widget _item(Map<String, String> item) {
+    return Container(
+      child: Column(
+        children: [
+          //绝对布局
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Image.asset(
+                "${item['cover']}",
+                fit: BoxFit.cover,
+              ),
+              Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.black38,
+                ),
+                child: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  padding: EdgeInsets.all(3),
+                  decoration: BoxDecoration(
+                    color: Colors.black54
+                  ),
+                  child: Text(
+                    "原价${item['price']}",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Text(
+              item['title'],
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

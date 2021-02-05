@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:we_chart_read_app/card_recommend.dart';
+import 'package:we_chart_read_app/card_special.dart';
 import 'package:we_chart_read_app/custom_appbar.dart';
 
 import 'card_free.dart';
@@ -50,7 +51,7 @@ class _ContentPagerState extends State<ContentPager> {
               _wrapItem(CardRecommend()),
               _wrapItem(CardShare()),
               _wrapItem(CardFree()),
-              _wrapItem(CardRecommend()),
+              _wrapItem(CardSpecial()),
             ],
           )
         )
